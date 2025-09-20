@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Navigo Example</title>
+  <script src="https://unpkg.com/navigo"></script>
+</head>
+<body>
+  <nav>
+    <a href="/" data-navigo>Home</a>
+    <a href="/about" data-navigo>About</a>
+    <a href="/contact" data-navigo>Contact</a>
+  </nav>
+
+  <div id="app"></div>
+
+  <script>
+    // Create a new router
+    const router = new Navigo("/");
+
+    const app = document.getElementById("app");
+
+    // Define routes
+    router
+      .on("/", () => {
+        app.innerHTML = "<h1>Home Page</h1><p>Welcome to the homepage!</p>";
+      })
+      .on("/about", () => {
+        app.innerHTML = "<h1>About Page</h1><p>This is the about section.</p>";
+      })
+      .on("/contact", () => {
+        app.innerHTML = "<h1>Contact Page</h1><p>Get in touch with us.</p>";
+      })
+      .notFound(() => {
+        app.innerHTML = "<h1>404</h1><p>Page not found.</p>";
+      })
+      .resolve();
+
+    // Make sure links with data-navigo work
+    router.updatePageLinks();
+  </script>
+</body>
+</html>
