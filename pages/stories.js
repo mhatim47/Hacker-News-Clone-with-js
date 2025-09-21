@@ -1,17 +1,13 @@
 import view from '../util/view.js'
+import Story from '../components/Story.js';
 
 export default async function Stories(path) {
     const stories = await getStories(path);
-    const storiesList = document.createElement('ul');
-    console.log(stories);
-    view.innerHTML = ''
-    stories.forEach(story => {
-        const storyItem = document.createElement('li');
-        storyItem.textContent = story.title;
-        storiesList.appendChild(storyItem);
-    });
-    // view.innerHTML = `<div>${storiesList}</div>`
-    view.appendChild(storiesList)
+    const hasStories = stories.length > 0;
+    view.innerHTML = `
+    <div>
+    ${hasStories? stories.map((story, i) => Story({...story, index:i})).join('') : 'No Stories'}
+    </div>`
 }
 
 async function getStories(path) {
