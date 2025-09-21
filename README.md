@@ -1,5 +1,3 @@
-# Hacker News Clone
-
 This project is a simple clone of the popular Hacker News website, built as part of a JavaScript course on Scribma. It demonstrates core web development concepts including client-side routing, dynamic rendering, and modular JavaScript architecture.
 
 ## Features
