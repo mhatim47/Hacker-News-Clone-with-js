@@ -1,4 +1,5 @@
 import Story from "../components/Story.js";
+import Comment from "../components/Comment.js";
 import view from "../util/view.js";
 import baseUrl from '../util/baseUrl.js';
 
@@ -10,6 +11,8 @@ export default async function Item() {
     let hassError = false;
     try {
         story = await getStory();
+        console.log(story.comments);
+        
         hasComments = story.comments.length > 0;
         
     } catch (error) {
@@ -24,7 +27,7 @@ export default async function Item() {
     ${Story(story)}
     </div>
     <hr/>
-    ${hasComments ? story.comments.map(comment => JSON.stringify(comment)).join(''): 'No Comments'}
+    ${hasComments ? story.comments.map(comment => Comment(comment)).join(''): 'No Comments'}
     `;    
 }
 
